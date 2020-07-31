@@ -10,4 +10,4 @@ The code in this package implements the tone mapping method as described in the 
 
 % ===============================================================
 
-Overview
+The source code will be released soon.
