@@ -1,4 +1,5 @@
 % ===============================================================
+
 The code in this package implements the burst denoising method as described in the following paper:
 
   Z. Liang, S. Guo, H. Gu, H. Zhang, L. Zhang, "A Decoupled Learning Scheme for Real-world Burst Denoising from Raw Images," in ECCV 2020
