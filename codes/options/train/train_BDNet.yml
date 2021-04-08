@@ -1,0 +1,115 @@
+#### general settings
+name: BDNet_train
+use_tb_logger: true
+model: video_base
+# scale: 4 # GS: without scale for denoising
+# gpu_ids: [0,1,2,3,4,5,6,7]
+gpu_ids: [0,1]
+is_test_gt: True
+is_multi_out: True
+#### datasets
+datasets:
+  train:
+    name: vimeo
+    mode: Synthetic_dynamic_dataset
+    interval_list: [1]
+    random_reverse: false
+    border_mode: false
+    dataroot_GT: ../datasets/vimeo90k/vimeo90k_train_GT.lmdb
+    cache_keys: ~
+    noise_in: True
+    cfa: bggr
+    noise_type: Poisson_Gaussian
+    sigma: 15
+    ori_H: 256
+    ori_W: 256
+
+    N_frames: 5
+    use_shuffle: True
+    n_workers: 4  # per GPU
+    batch_size: 2
+    GT_size: 256 # GS: change training dataset to 128
+    use_flip: True
+    use_rot: True
+    color: RGB
+    noise_level: 
+    pre_demosaic: False
+
+  train1:
+    name: vimeo
+    mode: Burst_static_dataset
+    interval_list: [1]
+    random_reverse: false
+    border_mode: false
+    dataroot_GT: ../datasets/Real_train/Real_train.lmdb
+    cache_keys: ~
+    noise_in: True
+    cfa: bggr
+    noise_type: Poisson_Gaussian
+    sigma: 15
+
+    N_frames: 5
+    use_shuffle: True
+    n_workers: 2  # per GPU
+    batch_size: 2
+    GT_size: 128 # GS: change training dataset to 128
+    use_flip: True
+    use_rot: True
+    color: RGB
+    noise_level: 
+    pre_demosaic: False
+
+  val:
+    pre_demosaic: False
+    name: vimeo
+    mode: Real_static #video_denoising_test_finetune #video_denoising_test_SIDD
+    dataroot_GT: ../datasets/Real_static
+    cache_data: True
+    N_frames: 5
+    noise_in: True
+    padding: new_info
+    noise_level: 
+    noise_type: Poisson_Gaussian
+    sigma: 15
+
+#### network structures
+network_G:
+  which_model_G: BDNet
+  nf: 64
+  nframes: 5
+  groups: 8
+  front_RBs: 2
+  back_RBs: 5
+
+
+#### path  
+path:
+  pretrain_model_G:  #../experiments/BDNet_train/models/80_G.pth
+  strict_load: ~ #True
+  resume_state:  #../experiments/BDNet_train/training_state/80.state
+
+#### training settings: learning rate scheme, loss
+train:
+  lr_G: !!float 1e-4
+  lr_scheme: ExponentialLR
+  decay_epoch: 90
+  beta1: 0.9
+  beta2: 0.99
+  niter: 600000
+  ft_tsa_only: 0 # 50000
+  warmup_iter: -1  # -1: no warm up
+  start_epoch: 0
+  decay_step: 0.1
+  num_epoch: 120
+
+  pixel_criterion: l1
+  pixel_weight: 1.0
+  val_freq: !!float 1e2
+
+  manual_seed: 0
+
+
+#### logger
+logger:
+  print_freq: 20
+  save_checkpoint_freq: !!float 5e2
