@@ -11,12 +11,12 @@ Note: we only provides the code for real-world noise removal.
 
 ## Datasets
 ### Training
-* [Dynamic video dataset](https://connectpolyu-my.sharepoint.com/:f:/r/personal/16903705r_connect_polyu_hk/Documents/BDNet_release/datasets/vimeo90k?csf=1&web=1&e=IoA2rw).
+* [Dynamic video dataset](https://drive.google.com/file/d/1GncC7zXElvaGMgVnxySz7OiZU7980rJ6/view?usp=sharing).
  This dataset corresponds to the _D<sub>d<sub>_ in the main paper which provides dynamic contents for alignment learnig.
-* [Real-world static burst dataset](https://connectpolyu-my.sharepoint.com/:f:/r/personal/16903705r_connect_polyu_hk/Documents/BDNet_release/datasets/Real_train?csf=1&web=1&e=s4VLOc).
+* [Real-world static burst dataset](https://drive.google.com/file/d/1hNhKih9qhpFzErh1l9Sx1elq2N1CM408/view?usp=sharing).
 This dataset corresponds to the _D<sub>s<sub>_ in the main paper which provides real-world noise for learning.
 ### Testing
-* [Real-static](https://connectpolyu-my.sharepoint.com/:f:/r/personal/16903705r_connect_polyu_hk/Documents/BDNet_release/datasets/Real_static?csf=1&web=1&e=YXhF0A).
+* [Real-static](https://drive.google.com/file/d/1-iipNmD7HO2iFsvAPMovoNKyFh1JMF8-/view?usp=sharing).
 * Real-dynamic (to be finished)
 
 ## Pretrained model
